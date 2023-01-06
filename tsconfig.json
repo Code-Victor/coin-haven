@@ -18,6 +18,7 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@store": ["src/store"],
+      "@store/*": ["src/store/*"],
       "@utils": ["src/utils"],
       "stitches.config": ["./stitches.config.ts"]
     }
