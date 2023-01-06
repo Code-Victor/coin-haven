@@ -11,7 +11,7 @@ export const coinGeckoApi = createApi({
     getCoins: builder.query<Coin[], string>({
       query: () => "coins/?sparkline=true&localization=false",
     }),
-    getCoinList: builder.query<CoinList[], string>({
+    getCoinList: builder.query<CoinList[], void>({
       query: () => "coins/list",
     }),
     getCoinInfo: builder.query<CoinInfo, string>({
