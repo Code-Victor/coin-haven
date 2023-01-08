@@ -1,13 +1,16 @@
 import React from "react";
 import { Box, Flex, IconButton } from "@components/base";
-import { BarChart, Hamburger, Home, Sun } from "@components/icons";
+import { BarChart, Hamburger, Home, Moon, Sun } from "@components/icons";
 import Link from "next/link";
 import { MenuButton } from "./MenuButton";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
 
 export function SideBar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
+    const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
   return (
     <Box
       css={{
@@ -40,7 +43,7 @@ export function SideBar() {
           <MenuButton
             onClick={() => setIsOpen(!isOpen)}
             size="md"
-            icon={<Hamburger color="white" />}
+            icon={<Hamburger color="var(--colors-text)" />}
             label="menu"
           />
         </Box>
@@ -56,25 +59,31 @@ export function SideBar() {
           <Flex fd="column" gap="2" css={{ overflow: "hidden" }}>
             <Link href="/">
               <MenuButton
-                icon={<Home color="white" />}
+                icon={<Home color="var(--colors-text)" />}
                 active={router.pathname === "/"}
                 label="home"
               />
             </Link>
             <Link href="/stats">
               <MenuButton
-                icon={<BarChart color="white" />}
+                icon={<BarChart color="var(--colors-text)" />}
                 active={router.pathname.includes("stats")}
                 label="stats"
               />
             </Link>
           </Flex>
           <IconButton
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => toggleTheme()}
             css={{ alignSelf: "center" }}
             size="md"
             bg="highlightPrimary"
-            icon={<Sun color="white" />}
+            icon={
+              theme === "light" ? (
+                <Moon color="var(--colors-text)" />
+              ) : (
+                <Sun color="var(--colors-text)" />
+              )
+            }
             label="sun"
           />
         </Flex>

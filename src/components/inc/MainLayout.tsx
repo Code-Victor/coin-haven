@@ -1,7 +1,9 @@
 import React from "react";
-import { Box, Flex, Grid, Text } from "@components/base";
+import { IconButton, Flex, Grid, Text, Box } from "@components/base";
 import { SideBar } from "./SideBar";
 import ButtomBar from "./ButtomBar";
+import { Moon, Sun } from "@components/icons";
+import { useTheme } from "next-themes";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -25,11 +27,36 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 export default MainLayout;
 
 function Navbar() {
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
+
   return (
-    <Box py="3">
+    <Box
+      as={Flex}
+      container
+      px="2"
+      py="3"
+      jc={{ "@initial": "between", "@lg": "center" }}
+      css={{ mx: "auto", "@lg": { width: "100%" } }}
+    >
       <Text ta="center" fs="xl" as="h1" fw="bold" color="text">
         Coin Haven
       </Text>
+      <IconButton
+        onClick={() => toggleTheme()}
+        css={{ alignSelf: "center", "@lg": { display: "none" } }}
+        size="md"
+        bg="highlightPrimary"
+        icon={
+          theme === "light" ? (
+            <Moon color="var(--colors-text)" />
+          ) : (
+            <Sun color="var(--colors-text)" />
+          )
+        }
+        label="sun"
+      />
     </Box>
   );
 }
