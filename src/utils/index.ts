@@ -1,4 +1,4 @@
-import { theme, CSS } from "stitches.config";
+import { theme, CSS, css } from "stitches.config";
 
 export function getVariants<T extends availableProperties>(
   property: T,
@@ -24,3 +24,18 @@ type availableProperties =
   | "fonts"
   | "fontWeights"
   | "zIndices";
+
+const visuallyHidden = css({
+  border: 0,
+  clip: "rect(0 0 0 0)",
+  height: "1px",
+  margin: "-1px",
+  overflow: "hidden",
+  padding: 0,
+  position: "absolute",
+  whiteSpace: "nowrap",
+  width: "1px",
+});
+export const utilityClasses = {
+  visuallyHidden: visuallyHidden(),
+};
