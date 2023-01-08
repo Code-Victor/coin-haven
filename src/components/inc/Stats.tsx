@@ -61,10 +61,9 @@ function Stats({ id }: { id: string }) {
               right: 0,
               top: "$7",
             },
-            "& .recharts-wrapper":{
+            "& .recharts-wrapper": {
               position: "absolute !important",
-
-            }
+            },
           }}
         >
           <Button onClick={() => setShow(!show)}>
@@ -101,7 +100,11 @@ function Stats({ id }: { id: string }) {
             <XAxis dataKey="date" />
             <YAxis strokeWidth={0} />
             <Tooltip />
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              vertical={false}
+              color={"rgba(var(--colors-textRGB),1)"}
+            />
           </LineChart>
         </ResponsiveContainer>
       </Box>
