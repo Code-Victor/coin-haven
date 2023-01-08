@@ -10,15 +10,32 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
+import { Range, DateRangePicker } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { styled } from "stitches.config";
 
+const today = new Date();
+const lastMonth = new Date(
+  today.getFullYear(),
+  today.getMonth() - 1,
+  today.getDate()
+);
 function Stats({ id }: { id: string }) {
+  const [selectionRange, setSelectionRange] = React.useState<Range[]>([
+    {
+      endDate: today,
+      startDate: lastMonth,
+      key: "selection",
+    },
+  ]);
+  const [show, setShow] = React.useState(false);
   const { data, isLoading, isError } = useGetRangeQuery([
     id,
     "usd",
-    1392577232,
-    1422577232,
+    selectionRange[0]?.startDate?.getTime()! / 1000,
+    selectionRange[0]?.endDate?.getTime()! / 1000,
   ]);
-  console.log(data);
   const transformData = (data: [number, number][] | undefined) => {
     const transformedData = data?.map((item) => ({
       date: new Date(item[0]).toLocaleDateString(),
@@ -28,10 +45,42 @@ function Stats({ id }: { id: string }) {
   };
   return (
     <Flex fd="column" bg="bgSecondary" px="3" py="2">
-      <Flex css={{ mb: "$2" }}>
+      {isLoading && <Text>Loading...</Text>}
+      {isError && <Text>oh Snap an Error occured</Text>}
+      <Flex css={{ mb: "$2" }} jc="between">
         <Text fs="2xl" fw="medium">
           Chart Data
         </Text>
+        <Box
+          css={{
+            position: "relative",
+            "& > div": {
+              position: "absolute",
+              display: show ? "auto" : "none",
+              zIndex: 10,
+              right: 0,
+              top: "$7",
+            },
+            "& .recharts-wrapper":{
+              position: "absolute !important",
+
+            }
+          }}
+        >
+          <Button onClick={() => setShow(!show)}>
+            {selectionRange[0]?.startDate?.toLocaleDateString()} -{" "}
+            {selectionRange[0]?.endDate?.toLocaleDateString()}
+          </Button>
+          <DateRangePicker
+            color="var(--colors-highlightPrimary)"
+            ranges={selectionRange}
+            editableDateInputs={true}
+            displayMode="date"
+            rangeColors={["var(--colors-highlightPrimary)"]}
+            moveRangeOnFirstSelection={false}
+            onChange={(item) => setSelectionRange([item.selection])}
+          />
+        </Box>
       </Flex>
       <Box
         css={{
@@ -50,7 +99,7 @@ function Stats({ id }: { id: string }) {
               dot={{ r: 0 }}
             />
             <XAxis dataKey="date" />
-            <YAxis strokeWidth={0}/>
+            <YAxis strokeWidth={0} />
             <Tooltip />
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
           </LineChart>
@@ -59,5 +108,16 @@ function Stats({ id }: { id: string }) {
     </Flex>
   );
 }
+
+const Button = styled("button", {
+  all: "unset",
+  cursor: "pointer",
+  color: "$text",
+  backgroundColor: "$highlightPrimary",
+  border: "1px solid $borderPrimary",
+  borderRadius: "$1",
+  padding: "$2 $3",
+  "&:hover": {},
+});
 
 export default Stats;
