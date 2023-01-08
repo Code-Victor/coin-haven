@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, Text, Box, ScrollArea, Grid, Skeleton } from "@components/base";
 import { useGetCoinListQuery } from "@store/services/coin";
 import { styled } from "stitches.config";
+import Link from "next/link";
 
 function AllCoins() {
   const {
@@ -45,20 +46,22 @@ function AllCoins() {
             ))}
           {coinList?.slice(0, 15)?.map((coin) => {
             return (
-              <CoinCard key={coin.id}>
-                <Text
-                  fs="lg"
-                  fw="medium"
-                  css={{
-                    display: " -webkit-box",
-                    "-webkit-line-clamp": 2,
-                    "-webkit-box-orient": "vertical",
-                    overflow: "hidden",
-                  }}
-                >
-                  {`${coin.name}(${coin.symbol})`}
-                </Text>
-              </CoinCard>
+              <Link key={coin.id} href={`/stats/${coin.id}`}>
+                <CoinCard>
+                  <Text
+                    fs="lg"
+                    fw="medium"
+                    css={{
+                      display: " -webkit-box",
+                      "-webkit-line-clamp": 2,
+                      "-webkit-box-orient": "vertical",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {`${coin.name}(${coin.symbol})`}
+                  </Text>
+                </CoinCard>
+              </Link>
             );
           })}
         </Grid>
