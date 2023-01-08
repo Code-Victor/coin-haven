@@ -15,6 +15,26 @@ const Box = styled("div", {
     bg: getVariants("colors", { bg: "$$" }),
     color: getVariants("colors", { color: "$$" }),
     br: getVariants("radii", { br: "$$" }),
+    container:{
+      true:{
+        width: "100%",
+        "@sm": {
+          maxWidth:640
+        },
+        "@md": {
+          maxWidth:768
+        },
+        "@lg": {
+          maxWidth:1024
+        },
+        "@xl": {
+          maxWidth:1280
+        },
+        "@xxl": {
+          maxWidth:1536
+        },
+    }
+  }
   },
 });
 export default Box
