@@ -1,11 +1,39 @@
+import { getVariants } from "@utils";
 import { styled } from "stitches.config";
 import { Box } from ".";
 
-const Flex = styled(Box, {
+const Flex = styled("div", {
   boxSizing: "border-box",
   display: "flex",
 
   variants: {
+    px: getVariants("space", { px: "$$" }),
+    py: getVariants("space", { py: "$$" }),
+    mx: getVariants("space", { mx: "$$" }),
+    my: getVariants("space", { my: "$$" }),
+    bg: getVariants("colors", { bg: "$$" }),
+    color: getVariants("colors", { color: "$$" }),
+    br: getVariants("radii", { br: "$$" }),
+    container: {
+      true: {
+        width: "100%",
+        "@sm": {
+          maxWidth: 640,
+        },
+        "@md": {
+          maxWidth: 768,
+        },
+        "@lg": {
+          maxWidth: 1024,
+        },
+        "@xl": {
+          maxWidth: 1280,
+        },
+        "@xxl": {
+          maxWidth: 1536,
+        },
+      },
+    },
     fd: {
       row: {
         flexDirection: "row",
