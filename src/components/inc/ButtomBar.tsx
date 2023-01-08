@@ -1,8 +1,12 @@
 import React from "react";
 import { Flex, IconButton } from "@components/base";
 import { Home, BarChart } from "@components/icons";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 function ButtomBar() {
+  const router = useRouter();
+
   return (
     <Flex
       br="pill"
@@ -20,8 +24,24 @@ function ButtomBar() {
         boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
       }}
     >
-      <IconButton icon={<Home color="white" />} bg="highlightPrimary" label="home" />
-      <IconButton icon={<BarChart color="white" />} label="stats" />
+      <Link href="/">
+        <IconButton
+          icon={<Home color="white" />}
+          bg={router.pathname === "/" ? "highlightPrimary" : "bgSecondary"}
+          label="home"
+        />
+      </Link>
+      <Link href="/stats">
+        <IconButton
+          bg={
+            router.pathname.includes("stats")
+              ? "highlightPrimary"
+              : "bgSecondary"
+          }
+          icon={<BarChart color="white" />}
+          label="stats"
+        />
+      </Link>
     </Flex>
   );
 }
