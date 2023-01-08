@@ -78,7 +78,7 @@ const CoinInfo = ({ data: data }: { data: Info }) => {
         </Text>
         <Box>
           <Flex fd="column" gap={4} px="2" py="3">
-            <InfoBox title="hashing_algorithm" info={data.hashing_algorithm} />
+            <InfoBox title="Hashing Algorithm" info={data.hashing_algorithm} />
             <InfoBox
               title="Country of Origin"
               info={data.country_origin || "unknown"}
@@ -95,9 +95,9 @@ const CoinInfo = ({ data: data }: { data: Info }) => {
             py="3"
             css={{ mt: "$5" }}
           >
-            <InfoBox title="hashing_algorithm" info={data.hashing_algorithm} />
-            <InfoBox title="Country of Origin" info={data.country_origin} />
-            <InfoBox title="Category" info={data.categories?.[0]} />
+            <InfoBox title="Total supply" info={data.total_supply} />
+            <InfoBox title="Max suppy" info={data.max_supply?.toString()??"unknown"} />
+            <InfoBox title="Circulating" info={data.circulating_supply} />
           </Flex>
         </Box>
       </Box>
