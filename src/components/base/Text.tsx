@@ -42,6 +42,7 @@ const Text = styled("p", {
     fs: "md",
     fw: "normal",
     ta: "left",
+    color: "text",
   },
 });
 
