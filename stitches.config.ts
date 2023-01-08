@@ -16,7 +16,7 @@ export const {
   theme: {
     colors: {
       bgPrimary: "#17151d",
-      
+
       bgSecondary: "#241f2a",
       highlightPrimary: "#7d30f5",
       highlightSecondary: "#3f6eff",
@@ -278,3 +278,15 @@ export const GlobalStyles = globalCss({
 });
 
 GlobalStyles();
+
+export const lightTheme = createTheme({
+  colors: {
+    bgPrimary: "#FFFFFF",
+    bgSecondary: "#cccccc",
+    text: "#17151d",
+    textRGB: "23, 21, 29",
+    highlightPrimary: "#9f50ff",
+    highlightSecondary: "#3f6eff",
+    shadow: "#000000",
+  },
+});
