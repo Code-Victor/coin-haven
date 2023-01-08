@@ -15,12 +15,16 @@ export const {
 } = createStitches({
   theme: {
     colors: {
+      bgPrimary: "#17151d",
+      
+      bgSecondary: "#241f2a",
+      highlightPrimary: "#7d30f5",
+      highlightSecondary: "#3f6eff",
       text: "#FFFFFF",
-      shadow: "#000000",
-      shadowRGB: "0, 0, 0",
       textRGB: "255, 255, 255",
-      bg: "#000000",
-      bgRGB: "0, 0, 0",
+      shadow: "#000000",
+      success: "#42cd1a",
+      failure: "red",
     },
     fonts: {
       inter: "Inter, sans-serif",
@@ -72,6 +76,7 @@ export const {
       2: "6px",
       3: "8px",
       4: "12px",
+      5: "24px",
       round: "50%",
       pill: "9999px",
     },
@@ -273,4 +278,3 @@ export const GlobalStyles = globalCss({
 });
 
 GlobalStyles();
-
