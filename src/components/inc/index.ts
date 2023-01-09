@@ -6,3 +6,4 @@ export { default as AllCoins } from "./AllCoins";
 export { default as CoinInfo } from "./CoinInfo";
 export { default as Exchange } from "./Exchange";
 export { default as Stats } from "./Stats";
+export { default as SearchBar } from "./Search";
